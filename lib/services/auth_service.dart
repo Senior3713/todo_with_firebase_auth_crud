@@ -6,7 +6,7 @@ class AuthService {
   static FirebaseAuth get auth => FirebaseAuth.instance;
   static FirebaseStorage get storage => FirebaseStorage.instance;
 
-  static Future<bool> signUp(String email, String password, BuildContext context) async {
+  static Future<bool> signUp(String email, String password, username) async {
     try {
       final user = await auth.createUserWithEmailAndPassword(
         email: email,
@@ -32,7 +32,31 @@ class AuthService {
     return null;
   }
 
-  static Future<void> logOut() async {
-    await auth.signOut();
+  static Future<bool> signOut() async {
+    try {
+      await auth.signOut();
+      return true;
+    } catch (e) {
+      debugPrint("ERROR: $e");
+      return false;
+    }
   }
+
+  static Future<bool> deleteAccount() async {
+
+    /// Har qanday appda delete account qilinganda avvalo qayta sign in qilishi talab qilinadi.
+    try {
+      if(auth.currentUser != null) {
+        await auth.currentUser!.delete();
+        return true;
+      }
+      return false;
+    } catch (e) {
+      debugPrint("ERROR: $e");
+      return false;
+    }
+  }
+
+  static User get user => auth.currentUser!;
 }
+

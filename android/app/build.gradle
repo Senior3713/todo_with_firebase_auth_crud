@@ -25,7 +25,7 @@ if (flutterVersionName == null) {
 android {
     namespace "com.jurakuziyev.todo_with_firebase_auth"
     compileSdkVersion flutter.compileSdkVersion
-    ndkVersion flutter.ndkVersion
+    ndkVersion '26.0.10636728'
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8

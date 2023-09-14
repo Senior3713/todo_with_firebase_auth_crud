@@ -60,10 +60,10 @@ class _HomePageState extends State<HomePage> {
                       ),
                       TextButton(
                         onPressed: () {
-                          AuthService.logOut();
+                          AuthService.signOut();
                           Navigator.of(context).pushReplacement(
                             MaterialPageRoute(
-                              builder: (builder) => const SignInPage(),
+                              builder: (builder) => SignInPage(),
                             ),
                           );
                         },
